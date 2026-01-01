@@ -1,0 +1,81 @@
+:root {
+  --bg: #0b1220;
+  --fg: #e5e7eb;
+  --accent: #22d3ee;
+  --muted: #9ca3af;
+  --card: #111827;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 24px 40px;
+}
+
+.logo {
+  font-size: 48px;
+  letter-spacing: 2px;
+}
+
+.tagline {
+  max-width: 720px;
+  margin: 16px auto 32px;
+  color: var(--muted);
+}
+
+.cta .btn {
+  display: inline-block;
+  margin: 0 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #0b1220;
+  background: var(--accent);
+  font-weight: 700;
+}
+
+.cta .btn.ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--accent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+}
+
+.downloads {
+  text-align: center;
+  padding: 40px 24px 60px;
+}
+
+.downloads .links a {
+  color: var(--accent);
+  margin: 0 12px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+  border-top: 1px solid #1f2937;
+}
