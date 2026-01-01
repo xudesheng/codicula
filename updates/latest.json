@@ -5,12 +5,17 @@
   "platforms": {
     "macos-universal": {
       "url": "https://github.com/xudesheng/codicula/releases/download/v0.1.0/Codicula-v0.1.0-universal.dmg",
-      "sha256": "ead46c6d1211eb771227368963d8b1146daf0332271b06428b688aa24f78c23c",
-      "size": 112599311
+      "sha256": "f521a5613b7562fa14d2a2051000bf6d421e2fc2afb0355c1c2300d8f1dce3d3",
+      "size": 112599965
+    },
+    "windows-x64-msi": {
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.1.0/Codicula-v0.1.0-x64.msi",
+      "sha256": "f0b6cef9e4333fd585a3658e6ead3fc149e6f3882d149d705f6507eb8df40a0f",
+      "size": 43683840
     },
     "windows-x64-exe": {
       "url": "https://github.com/xudesheng/codicula/releases/download/v0.1.0/Codicula-v0.1.0-x64.exe",
-      "sha256": "b02946973c75e6b3cdcf7a85cdfe3ea29fbf6084804924843dd1e07263e77337",
+      "sha256": "a112729365eb4fd032ad182ee55f6797f90be191d5f21da913e26c9f6fba0598",
       "size": 104975360
     }
   }
