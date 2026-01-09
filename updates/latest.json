@@ -1,24 +1,24 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "notes": "See release notes on GitHub.",
-  "pub_date": "2026-01-09T15:14:43Z",
+  "pub_date": "2026-01-09T16:06:07Z",
   "platforms": {
     "macos-universal": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.2.0/Codicula-v0.2.0-universal.dmg",
-      "sha256": "4794b6217a613d625a79e8c067b684e9a867292ab1e7bbea0e82e4b6512f1fa0",
-      "size_bytes": 116082081,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.2.1/Codicula-v0.2.1-universal.dmg",
+      "sha256": "1289a4aa01770dda3c4f1c60c59759fb21acfd9bea1082d9c79c29a765a32583",
+      "size_bytes": 116109859,
       "min_os_version": "11.0"
     },
     "windows-x64-msi": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.2.0/Codicula-v0.2.0-x64.msi",
-      "sha256": "e876576497433b1984926c3d2afd95839ea0b4f6a69d4ee5daed76636d32713c",
-      "size_bytes": 157323264,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.2.1/Codicula-v0.2.1-x64.msi",
+      "sha256": "ad786d8817a43951dc2c77186a9099a20f0ef7b4fb9046b42e62250146cc69b1",
+      "size_bytes": 157495296,
       "min_os_version": "10.0"
     },
     "windows-x64-zip": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.2.0/codicula-v0.2.0-x64-update.zip",
-      "sha256": "9e9ac389ff4e9d4e88bb0e58c70a775d0d2f8e142b6ebe0918e09f8300b077ab",
-      "size_bytes": 51895670,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.2.1/codicula-v0.2.1-x64-update.zip",
+      "sha256": "a999ff486fbac46576630a18e46c6454bc9693ebfede52799e38ce0ddb62528d",
+      "size_bytes": 51949012,
       "min_os_version": "10.0"
     }
   }
