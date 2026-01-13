@@ -54,6 +54,53 @@ body {
   border: 1px solid var(--accent);
 }
 
+.os-download {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.os-download a {
+  color: var(--accent);
+}
+
+.os-download__row {
+  display: inline-flex;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.os-download__label {
+  color: var(--muted);
+}
+
+.os-download__link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.35);
+  padding-bottom: 1px;
+}
+
+.os-download__link:hover {
+  border-bottom-color: rgba(34, 211, 238, 0.85);
+}
+
+.os-download__link--subtle {
+  border-bottom-color: rgba(34, 211, 238, 0.18);
+  font-weight: 500;
+}
+
+.os-download__meta {
+  color: var(--muted);
+}
+
+.os-download__sep {
+  color: var(--muted);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

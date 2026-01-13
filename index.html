@@ -15,6 +15,11 @@
       <a class="btn" href="https://github.com/xudesheng/codicula/releases/latest">Download</a>
       <a class="btn ghost" href="https://github.com/xudesheng/codicula">Releases</a>
     </div>
+    <div id="os-download" class="os-download" aria-live="polite">
+      <span class="os-download__hint">
+        Tip: You can also use the <a href="downloads.html">direct download links</a>.
+      </span>
+    </div>
   </header>
 
   <section class="grid">
@@ -41,6 +46,7 @@
     </div>
     <div class="links">
       <a href="https://github.com/xudesheng/codicula/releases/latest">GitHub Release</a>
+      <a href="downloads.html">All Downloads</a>
       <a href="updates/latest.json">Update Manifest</a>
       <a href="changelog.html">Changelog</a>
     </div>
@@ -49,5 +55,116 @@
   <footer>
     <span>codicula.app · codicula.com</span>
   </footer>
+
+  <script>
+    (function () {
+      const el = document.getElementById('os-download');
+      if (!el) return;
+
+      function setHtml(html) {
+        el.innerHTML = html;
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#39;');
+      }
+
+      function basename(url) {
+        try {
+          const u = new URL(url);
+          const parts = u.pathname.split('/');
+          return parts[parts.length - 1] || url;
+        } catch (_) {
+          const parts = String(url).split('/');
+          return parts[parts.length - 1] || String(url);
+        }
+      }
+
+      function detectOs() {
+        const ua = (navigator.userAgent || '').toLowerCase();
+        const plat = (navigator.userAgentData && navigator.userAgentData.platform
+          ? navigator.userAgentData.platform
+          : (navigator.platform || '')).toLowerCase();
+
+        const s = ua + ' ' + plat;
+        if (s.includes('mac')) return 'macos';
+        if (s.includes('win')) return 'windows';
+        if (s.includes('linux')) return 'linux';
+        return 'other';
+      }
+
+      const os = detectOs();
+      if (os === 'other') return;
+
+      // Start with a lightweight placeholder so layout doesn't jump too much.
+      setHtml('<span class="os-download__hint">Detecting your OS…</span>');
+
+      fetch('updates/latest.json', { cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to load manifest'))))
+        .then((manifest) => {
+          const version = manifest && manifest.version ? String(manifest.version) : '';
+          const platforms = (manifest && manifest.platforms) || {};
+
+          if (os === 'macos') {
+            const a = platforms['macos-universal'];
+            if (!a || !a.url) throw new Error('Missing macOS asset');
+            const name = basename(a.url);
+            setHtml(
+              '<div class="os-download__row">' +
+                '<span class="os-download__label">macOS detected:</span> ' +
+                '<a class="os-download__link" href="' + escapeHtml(a.url) + '">Download DMG' +
+                  (version ? ' v' + escapeHtml(version) : '') +
+                '</a>' +
+                '<span class="os-download__meta">(' + escapeHtml(name) + ')</span>' +
+              '</div>'
+            );
+            return;
+          }
+
+          if (os === 'windows') {
+            const msi = platforms['windows-x64-msi'];
+            const zip = platforms['windows-x64-zip'];
+            if (!msi || !msi.url) throw new Error('Missing Windows MSI asset');
+            const msiName = basename(msi.url);
+            const zipPart = (zip && zip.url)
+              ? ('<span class="os-download__sep">·</span><a class="os-download__link os-download__link--subtle" href="' + escapeHtml(zip.url) + '">Update ZIP</a>')
+              : '';
+
+            setHtml(
+              '<div class="os-download__row">' +
+                '<span class="os-download__label">Windows detected:</span> ' +
+                '<a class="os-download__link" href="' + escapeHtml(msi.url) + '">Download MSI' +
+                  (version ? ' v' + escapeHtml(version) : '') +
+                '</a>' +
+                '<span class="os-download__meta">(' + escapeHtml(msiName) + ')</span>' +
+                zipPart +
+              '</div>'
+            );
+            return;
+          }
+
+          // Linux: auto-update is not supported by the client; send users to All Downloads.
+          setHtml(
+            '<div class="os-download__row">' +
+              '<span class="os-download__label">Linux detected:</span> ' +
+              '<a class="os-download__link" href="downloads.html">See downloads</a>' +
+            '</div>'
+          );
+        })
+        .catch(() => {
+          // Keep the static fallback link if anything goes wrong.
+          setHtml(
+            '<span class="os-download__hint">' +
+              'Tip: Use the <a href="downloads.html">direct download links</a>.' +
+            '</span>'
+          );
+        });
+    })();
+  </script>
 </body>
 </html>

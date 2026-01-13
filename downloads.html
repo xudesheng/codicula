@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codicula — Downloads</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .content { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+    .content h1 { font-size: 36px; margin-bottom: 12px; }
+    .content p, .content li { color: var(--fg); }
+    .content .meta { color: var(--muted); }
+    .downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .dl-title { margin: 0 0 8px; font-size: 18px; }
+    .dl-meta { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+    .dl-actions { margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .dl-actions a { color: var(--accent); }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid #1f2937;
+      background: #0f172a;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    code { color: var(--fg); }
+  </style>
+</head>
+<body>
+  <header class="hero" style="padding-bottom: 0;">
+    <div class="logo">Codicula</div>
+    <p class="tagline">Direct downloads for the latest release.</p>
+  </header>
+
+  <section class="content">
+    <h1>Downloads</h1>
+    <p class="meta">
+      Sources:
+      <a href="updates/latest.json">update manifest</a>
+      ·
+      <a href="https://github.com/xudesheng/codicula/releases/latest">GitHub release</a>
+    </p>
+
+    <div id="manifest-summary" class="notice" style="display:none;"></div>
+
+    <div id="downloads-grid" class="downloads-grid">
+      <div class="card">
+        <h2 class="dl-title">Loading…</h2>
+        <p class="meta">Fetching <code>updates/latest.json</code>.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 28px;">
+      <a href="/">Back to home</a>
+    </p>
+  </section>
+
+  <script>
+    (function () {
+      const grid = document.getElementById('downloads-grid');
+      const summary = document.getElementById('manifest-summary');
+      if (!grid) return;
+
+      function escapeHtml(s) {
+        return String(s)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#39;');
+      }
+
+      function basename(url) {
+        try {
+          const u = new URL(url);
+          const parts = u.pathname.split('/');
+          return parts[parts.length - 1] || url;
+        } catch (_) {
+          const parts = String(url).split('/');
+          return parts[parts.length - 1] || String(url);
+        }
+      }
+
+      function fmtBytes(n) {
+        const x = Number(n);
+        if (!Number.isFinite(x) || x < 0) return String(n);
+        const units = ['B', 'KB', 'MB', 'GB'];
+        let v = x;
+        let i = 0;
+        while (v >= 1024 && i < units.length - 1) {
+          v /= 1024;
+          i++;
+        }
+        return (i === 0 ? v.toFixed(0) : v.toFixed(1)) + ' ' + units[i];
+      }
+
+      function card(title, pill, bodyHtml, actionsHtml) {
+        return (
+          '<div class="card">' +
+            '<h2 class="dl-title">' + escapeHtml(title) +
+              (pill ? '<span class="pill">' + escapeHtml(pill) + '</span>' : '') +
+            '</h2>' +
+            '<div>' + bodyHtml + '</div>' +
+            (actionsHtml ? '<div class="dl-actions">' + actionsHtml + '</div>' : '') +
+          '</div>'
+        );
+      }
+
+      fetch('updates/latest.json', { cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to load manifest'))))
+        .then((m) => {
+          const version = m && m.version ? String(m.version) : '';
+          const notes = m && m.notes ? String(m.notes) : '';
+          const pubDate = m && m.pub_date ? String(m.pub_date) : '';
+          const platforms = (m && m.platforms) || {};
+
+          if (summary) {
+            summary.style.display = 'block';
+            summary.innerHTML =
+              '<strong>Latest:</strong> ' +
+              (version ? ('v' + escapeHtml(version)) : 'Unknown version') +
+              (pubDate ? (' · <span class="meta">' + escapeHtml(pubDate) + '</span>') : '') +
+              (notes ? ('<div style="margin-top:8px;">' + escapeHtml(notes) + '</div>') : '');
+          }
+
+          const cards = [];
+
+          // macOS
+          if (platforms['macos-universal'] && platforms['macos-universal'].url) {
+            const a = platforms['macos-universal'];
+            cards.push(card(
+              'macOS',
+              'Universal DMG',
+              '<div class="meta">Min macOS: <code>' + escapeHtml(a.min_os_version || '—') + '</code></div>' +
+              '<div class="dl-meta">Size: ' + escapeHtml(fmtBytes(a.size_bytes)) + '</div>' +
+              '<div class="dl-meta">File: <code>' + escapeHtml(basename(a.url)) + '</code></div>',
+              '<a href="' + escapeHtml(a.url) + '">Download DMG</a>'
+            ));
+          }
+
+          // Windows
+          if (platforms['windows-x64-msi'] && platforms['windows-x64-msi'].url) {
+            const a = platforms['windows-x64-msi'];
+            const zip = platforms['windows-x64-zip'];
+            const zipLink = (zip && zip.url)
+              ? ('<a href="' + escapeHtml(zip.url) + '">Update ZIP</a>')
+              : '';
+            cards.push(card(
+              'Windows',
+              'x64',
+              '<div class="meta">Min Windows: <code>' + escapeHtml(a.min_os_version || '—') + '</code></div>' +
+              '<div class="dl-meta">MSI size: ' + escapeHtml(fmtBytes(a.size_bytes)) + '</div>' +
+              '<div class="dl-meta">MSI file: <code>' + escapeHtml(basename(a.url)) + '</code></div>',
+              '<a href="' + escapeHtml(a.url) + '">Download MSI</a>' + (zipLink ? ('<span class="meta">·</span>' + zipLink) : '')
+            ));
+          }
+
+          // Linux: not in manifest (auto-update excluded), so we point to GitHub assets.
+          cards.push(card(
+            'Linux',
+            'Manual download',
+            '<div class="meta">Linux auto-update is not enabled in the client yet.</div>' +
+            '<div class="dl-meta">Download the latest AppImage from GitHub assets.</div>',
+            '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>'
+          ));
+
+          if (cards.length === 0) {
+            grid.innerHTML = card(
+              'Downloads unavailable',
+              '',
+              '<div class="meta">Could not find any platform assets in <code>updates/latest.json</code>.</div>',
+              '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>'
+            );
+            return;
+          }
+
+          grid.innerHTML = cards.join('');
+        })
+        .catch(() => {
+          grid.innerHTML = card(
+            'Downloads unavailable',
+            '',
+            '<div class="meta">Failed to load <code>updates/latest.json</code>.</div>',
+            '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>'
+          );
+        });
+    })();
+  </script>
+</body>
+</html>
+
