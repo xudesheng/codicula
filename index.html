@@ -10,30 +10,137 @@
   <header class="hero">
     <img class="app-icon" src="codicula.png" alt="Codicula app icon">
     <div class="logo">Codicula</div>
-    <p class="tagline">A fast, WYSIWYG Markdown editor built for IDE + Agent workflows.</p>
+    <p class="tagline">
+      Vibe coding, but with a hard goal: a <strong>GPUI-native</strong>, WYSIWYG Markdown editor that stays smooth.
+      <br>
+      <span class="pill">Edit: ≤ 2 MiB</span>
+      <span class="pill">Rendered view: ≤ 5 MiB</span>
+      <span class="pill">Text view beyond</span>
+    </p>
     <div class="cta">
       <a class="btn" href="https://github.com/xudesheng/codicula/releases/latest">Download</a>
-      <a class="btn ghost" href="https://github.com/xudesheng/codicula">Releases</a>
+      <a class="btn ghost" href="downloads.html">All Downloads</a>
     </div>
     <div id="os-download" class="os-download" aria-live="polite">
       <span class="os-download__hint">
         Tip: You can also use the <a href="downloads.html">direct download links</a>.
       </span>
     </div>
+    <div class="subline">
+      Built on a real parsing/rendering stack (GFM + tables + tasks + math), special renderers (Mermaid, Typst/MiTeX),
+      and mode routing that refuses to jank on large documents.
+    </div>
+
+    <div class="hero-preview">
+      <div class="media-frame">
+        <img loading="eager" decoding="async" src="media/screenshots/hero_preview.svg" alt="Codicula preview (placeholder)">
+      </div>
+    </div>
   </header>
 
-  <section class="grid">
-    <div class="card">
-      <h2>Auto Update</h2>
-      <p>Download in background, prompt to restart, zero friction.</p>
+  <section class="section">
+    <div class="section-title">What we’re building</div>
+    <div class="section-desc">
+      Codicula is an experiment in “how far can we get with vibe coding” — without hand-writing the whole editor —
+      while still chasing the boring, hard constraints: correctness, smoothness, and a UI that feels native.
     </div>
-    <div class="card">
-      <h2>Agent Ready Soon</h2>
-      <p>Agent-first workflow is coming. Built for terminal + IDE power users.</p>
+
+    <div class="grid features">
+      <div class="card">
+        <h3>WYSIWYG Markdown (GPUI)</h3>
+        <p>Render blocks/inline into a real layout, with cursor + selection + undo/redo.</p>
+      </div>
+      <div class="card">
+        <h3>Large-file mode routing</h3>
+        <p>Edit ≤ 2 MiB. Rendered read-only ≤ 5 MiB. Fall back to text view beyond that.</p>
+      </div>
+      <div class="card">
+        <h3>Chunked parsing</h3>
+        <p>Parse from rope chunks to avoid full document materialization in hot paths.</p>
+      </div>
+      <div class="card">
+        <h3>Math + Mermaid</h3>
+        <p>Dedicated renderers for display math and Mermaid flowcharts, with caching.</p>
+      </div>
+      <div class="card">
+        <h3>Export pipelines</h3>
+        <p>PDF via Typst, plus mdBook export pipeline foundations (multi-file, link rewrite).</p>
+      </div>
+      <div class="card">
+        <h3>Safe media viewing</h3>
+        <p>Async image loading with budgets, plus sandboxed SVG rendering policy.</p>
+      </div>
     </div>
-    <div class="card">
-      <h2>Cross-Platform</h2>
-      <p>macOS (Universal DMG), Windows (MSI), Linux (AppImage).</p>
+  </section>
+
+  <section class="section">
+    <div class="section-title">Screenshots (replace these placeholders)</div>
+    <div class="section-desc">
+      Drop images into <code>website/media/screenshots/</code> with the same filenames and refresh.
+    </div>
+
+    <div class="screens">
+      <div class="card">
+        <div class="media-frame">
+          <img loading="lazy" decoding="async" src="media/screenshots/wysiwyg_edit.svg" alt="WYSIWYG editing screenshot (placeholder)">
+        </div>
+        <h3>Editing</h3>
+        <p>WYSIWYG layout, selection, and “feels-native” cursor movement.</p>
+        <div class="caption"><code>media/screenshots/wysiwyg_edit.*</code></div>
+      </div>
+
+      <div class="card">
+        <div class="media-frame">
+          <img loading="lazy" decoding="async" src="media/screenshots/large_docs.svg" alt="Large document handling screenshot (placeholder)">
+        </div>
+        <h3>Big docs</h3>
+        <p>Mode routing that keeps interaction predictable instead of pretending everything is editable.</p>
+        <div class="caption"><code>media/screenshots/large_docs.*</code></div>
+      </div>
+
+      <div class="card">
+        <div class="media-frame">
+          <img loading="lazy" decoding="async" src="media/screenshots/math_mermaid.svg" alt="Math and Mermaid screenshot (placeholder)">
+        </div>
+        <h3>Math + diagrams</h3>
+        <p>Display math and Mermaid flowcharts rendered as first-class blocks.</p>
+        <div class="caption"><code>media/screenshots/math_mermaid.*</code></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">Micro-demos (video loops)</div>
+    <div class="section-desc">
+      Keep them short, silent, and lightweight. Posters live in <code>website/media/posters/</code>, videos in <code>website/media/videos/</code>.
+    </div>
+
+    <div class="demos">
+      <div class="card">
+        <div class="demo-title">
+          <h3 style="margin:0;">Editing loop</h3>
+          <span class="hint"><code>media/videos/editing_loop.*</code></span>
+        </div>
+        <div class="media-frame">
+          <video muted playsinline loop preload="none" poster="media/posters/editing_loop.svg" style="width:100%; height:auto;">
+            <source src="media/videos/editing_loop.webm" type="video/webm">
+            <source src="media/videos/editing_loop.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="demo-title">
+          <h3 style="margin:0;">Export loop</h3>
+          <span class="hint"><code>media/videos/export_loop.*</code></span>
+        </div>
+        <div class="media-frame">
+          <video muted playsinline loop preload="none" poster="media/posters/export_loop.svg" style="width:100%; height:auto;">
+            <source src="media/videos/export_loop.webm" type="video/webm">
+            <source src="media/videos/export_loop.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -104,7 +211,8 @@
       // Start with a lightweight placeholder so layout doesn't jump too much.
       setHtml('<span class="os-download__hint">Detecting your OS…</span>');
 
-      fetch('updates/latest.json', { cache: 'no-store' })
+      // Cache-bust for the website only (does not affect the app auto-updater URL).
+      fetch('updates/latest.json?ts=' + Date.now(), { cache: 'no-store' })
         .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to load manifest'))))
         .then((manifest) => {
           const version = manifest && manifest.version ? String(manifest.version) : '';
@@ -164,6 +272,23 @@
             '</span>'
           );
         });
+
+      // Progressive enhancement for demo videos: play only when visible.
+      const videos = Array.from(document.querySelectorAll('video'));
+      if (videos.length && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            const v = e.target;
+            if (!(v instanceof HTMLVideoElement)) continue;
+            if (e.isIntersecting) {
+              v.play().catch(() => {});
+            } else {
+              v.pause();
+            }
+          }
+        }, { threshold: 0.35 });
+        videos.forEach((v) => io.observe(v));
+      }
     })();
   </script>
 </body>

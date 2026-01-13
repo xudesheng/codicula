@@ -114,7 +114,8 @@
         );
       }
 
-      fetch('updates/latest.json', { cache: 'no-store' })
+      // Cache-bust for the website only (does not affect the app auto-updater URL).
+      fetch('updates/latest.json?ts=' + Date.now(), { cache: 'no-store' })
         .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Failed to load manifest'))))
         .then((m) => {
           const version = m && m.version ? String(m.version) : '';

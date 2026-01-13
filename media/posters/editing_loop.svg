@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="788" viewBox="0 0 1400 788">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0a1a2a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="788" rx="26" fill="url(#bg)"/>
+  <rect x="56" y="60" width="1288" height="668" rx="18" fill="#0f172a" stroke="#1f2937" stroke-width="2"/>
+  <text x="96" y="126" fill="#e5e7eb" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="28">Demo loop (editing)</text>
+  <text x="96" y="162" fill="#9ca3af" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="18">Replace with: media/videos/editing_loop.webm (+ mp4 fallback)</text>
+
+  <rect x="96" y="210" width="1208" height="468" rx="16" fill="#0b1220" stroke="#1f2937"/>
+  <path d="M680 350 L680 538" stroke="url(#accent)" stroke-width="6" opacity="0.65"/>
+  <path d="M610 402 L770 444 L610 486 Z" fill="url(#accent)" opacity="0.85"/>
+</svg>
+

@@ -2,21 +2,27 @@
   --bg: #0b1220;
   --fg: #e5e7eb;
   --accent: #22d3ee;
+  --accent2: #a78bfa;
   --muted: #9ca3af;
   --card: #111827;
+  --border: #1f2937;
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  background: var(--bg);
+  background:
+    radial-gradient(900px 600px at 20% 0%, rgba(34, 211, 238, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 80% 10%, rgba(167, 139, 250, 0.12), transparent 55%),
+    radial-gradient(900px 700px at 40% 120%, rgba(52, 211, 153, 0.10), transparent 60%),
+    var(--bg);
   color: var(--fg);
 }
 
 .hero {
   text-align: center;
-  padding: 80px 24px 40px;
+  padding: 78px 24px 28px;
 }
 
 .app-icon {
@@ -27,14 +33,17 @@ body {
 }
 
 .logo {
-  font-size: 48px;
-  letter-spacing: 2px;
+  font-size: 54px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
 }
 
 .tagline {
-  max-width: 720px;
-  margin: 16px auto 32px;
+  max-width: 860px;
+  margin: 14px auto 26px;
   color: var(--muted);
+  font-size: 18px;
+  line-height: 1.55;
 }
 
 .cta .btn {
@@ -51,7 +60,68 @@ body {
 .cta .btn.ghost {
   background: transparent;
   color: var(--fg);
-  border: 1px solid var(--accent);
+  border: 1px solid rgba(34, 211, 238, 0.65);
+}
+
+.hero .subline {
+  max-width: 980px;
+  margin: 18px auto 0;
+  color: var(--fg);
+  opacity: 0.92;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(17, 24, 39, 0.75);
+  color: var(--muted);
+  margin: 0 6px 6px;
+  vertical-align: middle;
+}
+
+.hero-preview {
+  max-width: 1040px;
+  margin: 34px auto 0;
+  padding: 0 16px;
+}
+
+.media-frame {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.7);
+  box-shadow:
+    0 22px 65px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.media-frame img,
+.media-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section {
+  padding: 56px 24px;
+}
+
+.section .section-title {
+  max-width: 980px;
+  margin: 0 auto 10px;
+  font-size: 24px;
+  letter-spacing: 0.4px;
+}
+
+.section .section-desc {
+  max-width: 980px;
+  margin: 0 auto 22px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .os-download {
@@ -114,7 +184,67 @@ body {
   background: var(--card);
   padding: 20px;
   border-radius: 12px;
-  border: 1px solid #1f2937;
+  border: 1px solid var(--border);
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.features {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.screens {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.screens .card {
+  padding: 16px;
+}
+
+.screens .media-frame {
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.screens .caption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.demos {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.demo-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.demo-title .hint {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .downloads {
@@ -128,7 +258,7 @@ body {
   padding: 12px 16px;
   border-radius: 10px;
   background: #111827;
-  border: 1px solid #1f2937;
+  border: 1px solid var(--border);
   color: var(--muted);
   line-height: 1.5;
 }
@@ -146,5 +276,5 @@ footer {
   text-align: center;
   color: var(--muted);
   padding: 24px;
-  border-top: 1px solid #1f2937;
+  border-top: 1px solid var(--border);
 }

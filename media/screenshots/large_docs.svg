@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0a1a2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" rx="24" fill="url(#bg)"/>
+  <rect x="54" y="60" width="1092" height="630" rx="18" fill="#0f172a" stroke="#1f2937" stroke-width="2"/>
+  <text x="80" y="112" fill="#e5e7eb" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="28">Large docs, on purpose</text>
+  <text x="80" y="150" fill="#9ca3af" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="18">Auto mode routing: Edit ≤ 2 MiB · Rendered view ≤ 5 MiB · Text view beyond.</text>
+
+  <rect x="84" y="190" width="1032" height="440" rx="14" fill="#0b1220" stroke="#1f2937"/>
+
+  <!-- fake meters -->
+  <rect x="120" y="240" width="520" height="14" rx="7" fill="#111827"/>
+  <rect x="120" y="240" width="240" height="14" rx="7" fill="#22d3ee" opacity="0.85"/>
+  <text x="660" y="252" fill="#9ca3af" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="16">Edit mode budget</text>
+
+  <rect x="120" y="290" width="520" height="14" rx="7" fill="#111827"/>
+  <rect x="120" y="290" width="390" height="14" rx="7" fill="#a78bfa" opacity="0.75"/>
+  <text x="660" y="302" fill="#9ca3af" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="16">Rendered view budget</text>
+
+  <rect x="120" y="340" width="520" height="14" rx="7" fill="#111827"/>
+  <rect x="120" y="340" width="490" height="14" rx="7" fill="#34d399" opacity="0.55"/>
+  <text x="660" y="352" fill="#9ca3af" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="16">Plain text view budget</text>
+
+  <!-- fake paragraph blocks -->
+  <rect x="120" y="410" width="860" height="14" rx="7" fill="#111827"/>
+  <rect x="120" y="438" width="820" height="14" rx="7" fill="#111827"/>
+  <rect x="120" y="466" width="780" height="14" rx="7" fill="#111827"/>
+  <rect x="120" y="494" width="740" height="14" rx="7" fill="#111827"/>
+
+  <text x="600" y="710" text-anchor="middle" fill="#9ca3af" font-family="ui-monospace, Menlo, Monaco, Consolas, monospace" font-size="18">
+    Placeholder: media/screenshots/large_docs.*
+  </text>
+</svg>
+
