@@ -1,25 +1,31 @@
 {
-  "version": "0.4.3",
+  "version": "0.4.4",
   "notes": "See release notes on GitHub.",
-  "pub_date": "2026-02-03T00:28:22Z",
+  "pub_date": "2026-02-03T02:06:38Z",
   "platforms": {
     "macos-universal": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.3/Codicula-v0.4.3-universal.dmg",
-      "sha256": "994d7aeaa070e4b319e163bffa7665465c1948781fe9288ae8a2f05193ce36d7",
-      "size_bytes": 169236643,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.4/Codicula-v0.4.4-universal.dmg",
+      "sha256": "a76b84e73b2440cfc3778a48fb6185e4090a3ca92571ca818ca382acdf1ddf97",
+      "size_bytes": 260626864,
       "min_os_version": "11.0"
     },
     "windows-x64-msi": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.3/Codicula-v0.4.3-x64.msi",
-      "sha256": "aedb02ef78e7e8edeefc530a31964c636d2fc97affdbe0e88a088d71cb82c2e9",
-      "size_bytes": 216666112,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.4/Codicula-v0.4.4-x64.msi",
+      "sha256": "360c520ae70675e6a6424d717376cda66178dd3ff1c823cae960dd8e35bb402d",
+      "size_bytes": 253034496,
       "min_os_version": "10.0"
     },
     "windows-x64-zip": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.3/codicula-v0.4.3-x64-update.zip",
-      "sha256": "d1c5c006faef9c8cf83836bda0e1538bc7055a4b5a256686f5531f42c9344422",
-      "size_bytes": 74952835,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.4/codicula-v0.4.4-x64-update.zip",
+      "sha256": "f50c122f9d801393d001b4550d1b177c46e94975a8f94f2c6fd314ba6fd33ced",
+      "size_bytes": 114646451,
       "min_os_version": "10.0"
+    },
+    "linux-x64-appimage": {
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.4.4/Codicula-v0.4.4-x86_64.AppImage",
+      "sha256": "2b3dd21851807ad61b72f0ef110d6d064c34662c418741a41d942c20fc2c0684",
+      "size_bytes": 129098944,
+      "min_os_version": ""
     }
   }
 }
