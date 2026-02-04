@@ -18,13 +18,11 @@
       <span class="pill">Text view beyond</span>
     </p>
     <div class="cta">
-      <a class="btn" href="https://github.com/xudesheng/codicula/releases/latest">Download</a>
+      <a id="main-download-btn" class="btn" href="https://github.com/xudesheng/codicula/releases/latest">Download</a>
       <a class="btn ghost" href="downloads.html">All Downloads</a>
     </div>
     <div id="os-download" class="os-download" aria-live="polite">
-      <span class="os-download__hint">
-        Tip: You can also use the <a href="downloads.html">direct download links</a>.
-      </span>
+      <!-- OS detection info will be inserted here -->
     </div>
     <div class="subline">
       Built on a real parsing/rendering stack (GFM + tables + tasks + math), special renderers (Mermaid, Typst/MiTeX),
@@ -206,10 +204,24 @@
       }
 
       const os = detectOs();
-      if (os === 'other') return;
+      const mainBtn = document.getElementById('main-download-btn');
 
-      // Start with a lightweight placeholder so layout doesn't jump too much.
-      setHtml('<span class="os-download__hint">Detecting your OS…</span>');
+      // Helper to update main download button
+      function setMainDownload(url, label) {
+        if (mainBtn) {
+          mainBtn.href = url;
+          mainBtn.textContent = label;
+        }
+      }
+
+      if (os === 'other') {
+        // Unknown OS - keep default GitHub link
+        setHtml('<span class="os-download__hint">See <a href="downloads.html">all downloads</a> for your platform.</span>');
+        return;
+      }
+
+      // Start with a lightweight placeholder
+      setHtml('<span class="os-download__hint">Detecting download…</span>');
 
       // Cache-bust for the website only (does not affect the app auto-updater URL).
       fetch('updates/latest.json?ts=' + Date.now(), { cache: 'no-store' })
@@ -222,53 +234,49 @@
             const a = platforms['macos-universal'];
             if (!a || !a.url) throw new Error('Missing macOS asset');
             const name = basename(a.url);
+            // Update main button to download directly
+            setMainDownload(a.url, 'Download for macOS' + (version ? ' v' + version : ''));
             setHtml(
-              '<div class="os-download__row">' +
-                '<span class="os-download__label">macOS detected:</span> ' +
-                '<a class="os-download__link" href="' + escapeHtml(a.url) + '">Download DMG' +
-                  (version ? ' v' + escapeHtml(version) : '') +
-                '</a>' +
-                '<span class="os-download__meta">(' + escapeHtml(name) + ')</span>' +
-              '</div>'
+              '<span class="os-download__hint">macOS detected · <code>' + escapeHtml(name) + '</code></span>'
             );
             return;
           }
 
           if (os === 'windows') {
             const msi = platforms['windows-x64-msi'];
-            const exe = platforms['windows-x64-exe'];
             if (!msi || !msi.url) throw new Error('Missing Windows MSI asset');
             const msiName = basename(msi.url);
-            const exePart = (exe && exe.url)
-              ? ('<span class="os-download__sep">·</span><a class="os-download__link os-download__link--subtle" href="' + escapeHtml(exe.url) + '">Update EXE</a>')
-              : '';
-
+            // Update main button to download MSI directly
+            setMainDownload(msi.url, 'Download for Windows' + (version ? ' v' + version : ''));
             setHtml(
-              '<div class="os-download__row">' +
-                '<span class="os-download__label">Windows detected:</span> ' +
-                '<a class="os-download__link" href="' + escapeHtml(msi.url) + '">Download MSI' +
-                  (version ? ' v' + escapeHtml(version) : '') +
-                '</a>' +
-                '<span class="os-download__meta">(' + escapeHtml(msiName) + ')</span>' +
-                exePart +
-              '</div>'
+              '<span class="os-download__hint">Windows detected · <code>' + escapeHtml(msiName) + '</code></span>'
             );
             return;
           }
 
-          // Linux: auto-update is not supported by the client; send users to All Downloads.
-          setHtml(
-            '<div class="os-download__row">' +
-              '<span class="os-download__label">Linux detected:</span> ' +
-              '<a class="os-download__link" href="downloads.html">See downloads</a>' +
-            '</div>'
-          );
+          if (os === 'linux') {
+            const appimage = platforms['linux-x64-appimage'];
+            if (appimage && appimage.url) {
+              const name = basename(appimage.url);
+              // Update main button to download AppImage directly
+              setMainDownload(appimage.url, 'Download for Linux' + (version ? ' v' + version : ''));
+              setHtml(
+                '<span class="os-download__hint">Linux detected · <code>' + escapeHtml(name) + '</code></span>'
+              );
+            } else {
+              // No AppImage in manifest, fallback to downloads page
+              setHtml(
+                '<span class="os-download__hint">Linux detected · <a href="downloads.html">See downloads</a></span>'
+              );
+            }
+            return;
+          }
         })
         .catch(() => {
           // Keep the static fallback link if anything goes wrong.
           setHtml(
             '<span class="os-download__hint">' +
-              'Tip: Use the <a href="downloads.html">direct download links</a>.' +
+              'Could not detect download. See <a href="downloads.html">all downloads</a>.' +
             '</span>'
           );
         });
