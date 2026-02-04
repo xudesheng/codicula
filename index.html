@@ -236,11 +236,11 @@
 
           if (os === 'windows') {
             const msi = platforms['windows-x64-msi'];
-            const zip = platforms['windows-x64-zip'];
+            const exe = platforms['windows-x64-exe'];
             if (!msi || !msi.url) throw new Error('Missing Windows MSI asset');
             const msiName = basename(msi.url);
-            const zipPart = (zip && zip.url)
-              ? ('<span class="os-download__sep">·</span><a class="os-download__link os-download__link--subtle" href="' + escapeHtml(zip.url) + '">Update ZIP</a>')
+            const exePart = (exe && exe.url)
+              ? ('<span class="os-download__sep">·</span><a class="os-download__link os-download__link--subtle" href="' + escapeHtml(exe.url) + '">Update EXE</a>')
               : '';
 
             setHtml(
@@ -250,7 +250,7 @@
                   (version ? ' v' + escapeHtml(version) : '') +
                 '</a>' +
                 '<span class="os-download__meta">(' + escapeHtml(msiName) + ')</span>' +
-                zipPart +
+                exePart +
               '</div>'
             );
             return;
