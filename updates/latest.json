@@ -1,29 +1,29 @@
 {
-  "version": "0.7.3",
+  "version": "0.7.4",
   "notes": "See release notes on GitHub.",
-  "pub_date": "2026-02-07T01:54:04Z",
+  "pub_date": "2026-02-07T03:06:34Z",
   "platforms": {
     "macos-universal": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.3/Codicula-v0.7.3-universal.dmg",
-      "sha256": "d0a376a1e1ee08d1ec4dfd4c392f4cc6d7a7dc0c5a5be1fd08da9df3ca4478ee",
-      "size_bytes": 266596842,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.4/Codicula-v0.7.4-universal.dmg",
+      "sha256": "7bdea1d108095d2aa4d5ad5adf33958a1b02ec0bc32793c95eea349de294245c",
+      "size_bytes": 266177674,
       "min_os_version": "11.0"
     },
     "windows-x64-msi": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.3/Codicula-v0.7.3-x64.msi",
-      "sha256": "d89143876db5ec533ae2be3825c8189971b304c1bb7438d965b325b21abdc342",
-      "size_bytes": 256520192,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.4/Codicula-v0.7.4-x64.msi",
+      "sha256": "4f4473b0c1387957892d69859cfa032f3a61af7dfcadd026a3cd37062a176a47",
+      "size_bytes": 256552960,
       "min_os_version": "10.0"
     },
     "windows-x64-exe": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.3/Codicula-v0.7.3-x64-update.exe",
-      "sha256": "9ab11040130d87b41ee382dc5a6366d5c04e9f48df1e2f5087df00bf06fbc0eb",
-      "size_bytes": 90452300,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.4/Codicula-v0.7.4-x64-update.exe",
+      "sha256": "ae2ff847e84c11fad98de842a9582b2bda75b26bcf7eb89b500daf45ce0dfde0",
+      "size_bytes": 90464763,
       "min_os_version": "10.0"
     },
     "linux-x64-appimage": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.3/Codicula-v0.7.3-x86_64.AppImage",
-      "sha256": "cfa0411905406b4e0b1b8238a61b83d8df8d718042c3d1b4bef6c861c7feb332",
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.4/Codicula-v0.7.4-x86_64.AppImage",
+      "sha256": "f41676e58ed83a62b6b720e1ddf1874d8a4097642eb008cb371b8d14b65fcf1f",
       "size_bytes": 130020544,
       "min_os_version": ""
     }
