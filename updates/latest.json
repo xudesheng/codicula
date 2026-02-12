@@ -1,30 +1,30 @@
 {
   "version": "0.7.13",
   "notes": "See release notes on GitHub.",
-  "pub_date": "2026-02-12T15:45:41Z",
+  "pub_date": "2026-02-12T17:25:39Z",
   "platforms": {
     "macos-universal": {
       "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.13/Codicula-v0.7.13-universal.dmg",
-      "sha256": "2a0b3e63dd291eead1e1cb1ecfffa1c90c11ba018bdfafb22ef8d50381731499",
-      "size_bytes": 266968230,
+      "sha256": "0714a3f4c913e769a0e51e34c665e50e0aae584705d927ac433dbd6c35e1d299",
+      "size_bytes": 266999310,
       "min_os_version": "11.0"
     },
     "windows-x64-msi": {
       "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.13/Codicula-v0.7.13-x64.msi",
-      "sha256": "1698bd0e28cda5c9a2800ad87a9897bc2166d5ee2cc2b4d105810ddee5f22fd4",
-      "size_bytes": 258088960,
+      "sha256": "90ae24fa522c4e5f13fe91e9859ab4b10284d38dc5a307e30cd5f0464135c0a0",
+      "size_bytes": 255401984,
       "min_os_version": "10.0"
     },
     "windows-x64-exe": {
       "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.13/Codicula-v0.7.13-x64-update.exe",
-      "sha256": "5bb7eb8c9fe8628a10791ac639b7df1a89e635fb0e2c2b4b7e905d93259dd487",
-      "size_bytes": 90555882,
+      "sha256": "3aafe3e9f7dc5f50f8ad0b91fad77fb08dc70855ad5bed2af3b6bde3bcfee86b",
+      "size_bytes": 90183586,
       "min_os_version": "10.0"
     },
     "linux-x64-appimage": {
       "url": "https://github.com/xudesheng/codicula/releases/download/v0.7.13/Codicula-v0.7.13-x86_64.AppImage",
-      "sha256": "8ec5226e4db687d6d3504c4ad492ceff2992d8493c704c9d962ff4bee102af2c",
-      "size_bytes": 130208960,
+      "sha256": "7d09ed5ed0ecda0d1163384a2768e71142ade20a0b896ea37abcfe4036507a5d",
+      "size_bytes": 130180288,
       "min_os_version": ""
     }
   }
