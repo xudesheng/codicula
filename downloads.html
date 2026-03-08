@@ -150,18 +150,13 @@
           // Windows
           if (platforms['windows-x64-msi'] && platforms['windows-x64-msi'].url) {
             const a = platforms['windows-x64-msi'];
-            // Auto-update uses windows-x64-exe (InnoSetup installer)
-            const exe = platforms['windows-x64-exe'];
-            const exeLink = (exe && exe.url)
-              ? ('<a href="' + escapeHtml(exe.url) + '">Update EXE</a>')
-              : '';
             cards.push(card(
               'Windows',
-              'x64',
+              'x64 MSI',
               '<div class="meta">Min Windows: <code>' + escapeHtml(a.min_os_version || '—') + '</code></div>' +
               '<div class="dl-meta">MSI size: ' + escapeHtml(fmtBytes(a.size_bytes)) + '</div>' +
               '<div class="dl-meta">MSI file: <code>' + escapeHtml(basename(a.url)) + '</code></div>',
-              '<a href="' + escapeHtml(a.url) + '">Download MSI</a>' + (exeLink ? ('<span class="meta">·</span>' + exeLink) : '')
+              '<a href="' + escapeHtml(a.url) + '">Download MSI</a>'
             ));
           }
 
