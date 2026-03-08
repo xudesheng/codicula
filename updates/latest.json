@@ -1,30 +1,30 @@
 {
-  "version": "0.8.13",
+  "version": "0.8.14",
   "notes": "See release notes on GitHub.",
-  "pub_date": "2026-03-08T17:04:47Z",
+  "pub_date": "2026-03-08T18:01:08Z",
   "platforms": {
     "macos-universal": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.13/Codicula-v0.8.13-universal.dmg",
-      "sha256": "4250b1c3805bce5ad3069f8d88a0f3bf2cb4c515123768076ccee88ac8e3f5b5",
-      "size_bytes": 274753184,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.14/Codicula-v0.8.14-universal.dmg",
+      "sha256": "f29e2795f5ccda75571a2f9c3deb662ab1caa093a73b42194054ee31c79b7a51",
+      "size_bytes": 274198325,
       "min_os_version": "11.0"
     },
     "windows-x64-msi": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.13/Codicula-v0.8.13-x64.msi",
-      "sha256": "b27fdff44c31277a1fdbbf9c28761f1e0a939e200b37b65daf166135df097e4a",
-      "size_bytes": 257503232,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.14/Codicula-v0.8.14-x64.msi",
+      "sha256": "b14c0b12da91931692de286fe59a81cb8c0ba5454bdf755fe780c98dce39ae55",
+      "size_bytes": 259940352,
       "min_os_version": "10.0"
     },
     "windows-x64-exe": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.13/Codicula-v0.8.13-x64-update.exe",
-      "sha256": "4603e93e6cfd498e3b141d1c30b0ae6c8992b4f500019cf882fd8b8fc9a43d30",
-      "size_bytes": 90891965,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.14/Codicula-v0.8.14-x64-update.exe",
+      "sha256": "b541b966361043c3199b016bff7e537884acb5c9336bad162827bd13d93c3d5b",
+      "size_bytes": 91407113,
       "min_os_version": "10.0"
     },
     "linux-x64-appimage": {
-      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.13/Codicula-v0.8.13-x86_64.AppImage",
-      "sha256": "4c2888e681269cb42e52bf4e359de8e4e1f9cb5b8b12add1b10b650250d74476",
-      "size_bytes": 132871360,
+      "url": "https://github.com/xudesheng/codicula/releases/download/v0.8.14/Codicula-v0.8.14-x86_64.AppImage",
+      "sha256": "e2747d35fd9a7d24d352d250a7dd68a9f483a335618b9a9bbc26961897b6eb99",
+      "size_bytes": 132867264,
       "min_os_version": ""
     }
   }
