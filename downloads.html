@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Codicula — Downloads</title>
+  <title>Codicula - Downloads</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     .content { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
@@ -20,6 +20,10 @@
     .dl-meta { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
     .dl-actions { margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap; }
     .dl-actions a { color: var(--accent); }
+    .card.recommended {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.35);
+    }
     .pill {
       display: inline-block;
       font-size: 12px;
@@ -30,6 +34,11 @@
       border-radius: 999px;
       margin-left: 8px;
       vertical-align: middle;
+    }
+    .pill.recommended {
+      color: #7dd3fc;
+      border-color: #0ea5e9;
+      background: rgba(2, 132, 199, 0.22);
     }
     code { color: var(--fg); }
   </style>
@@ -45,7 +54,7 @@
     <p class="meta">
       Sources:
       <a href="updates/latest.json">update manifest</a>
-      ·
+      -
       <a href="https://github.com/xudesheng/codicula/releases/latest">GitHub release</a>
     </p>
 
@@ -53,7 +62,7 @@
 
     <div id="downloads-grid" class="downloads-grid">
       <div class="card">
-        <h2 class="dl-title">Loading…</h2>
+        <h2 class="dl-title">Loading...</h2>
         <p class="meta">Fetching <code>updates/latest.json</code>.</p>
       </div>
     </div>
@@ -102,17 +111,32 @@
         return (i === 0 ? v.toFixed(0) : v.toFixed(1)) + ' ' + units[i];
       }
 
-      function card(title, pill, bodyHtml, actionsHtml) {
+      function detectOs() {
+        const ua = (navigator.userAgent || '').toLowerCase();
+        const plat = (navigator.userAgentData && navigator.userAgentData.platform
+          ? navigator.userAgentData.platform
+          : (navigator.platform || '')).toLowerCase();
+        const s = ua + ' ' + plat;
+        if (s.includes('mac')) return 'macos';
+        if (s.includes('win')) return 'windows';
+        if (s.includes('linux')) return 'linux';
+        return 'other';
+      }
+
+      function card(title, pill, bodyHtml, actionsHtml, recommended) {
         return (
-          '<div class="card">' +
+          '<div class="card' + (recommended ? ' recommended' : '') + '">' +
             '<h2 class="dl-title">' + escapeHtml(title) +
               (pill ? '<span class="pill">' + escapeHtml(pill) + '</span>' : '') +
+              (recommended ? '<span class="pill recommended">Recommended</span>' : '') +
             '</h2>' +
             '<div>' + bodyHtml + '</div>' +
             (actionsHtml ? '<div class="dl-actions">' + actionsHtml + '</div>' : '') +
           '</div>'
         );
       }
+
+      const currentOs = detectOs();
 
       // Cache-bust for the website only (does not affect the app auto-updater URL).
       fetch('updates/latest.json?ts=' + Date.now(), { cache: 'no-store' })
@@ -128,69 +152,79 @@
             summary.innerHTML =
               '<strong>Latest:</strong> ' +
               (version ? ('v' + escapeHtml(version)) : 'Unknown version') +
-              (pubDate ? (' · <span class="meta">' + escapeHtml(pubDate) + '</span>') : '') +
+              (pubDate ? (' - <span class="meta">' + escapeHtml(pubDate) + '</span>') : '') +
               (notes ? ('<div style="margin-top:8px;">' + escapeHtml(notes) + '</div>') : '');
           }
 
           const cards = [];
+          function pushCard(html, recommended) {
+            cards.push({ html, recommended });
+          }
 
-          // macOS
           if (platforms['macos-universal'] && platforms['macos-universal'].url) {
             const a = platforms['macos-universal'];
-            cards.push(card(
+            const rec = currentOs === 'macos';
+            pushCard(card(
               'macOS',
               'Universal DMG',
-              '<div class="meta">Min macOS: <code>' + escapeHtml(a.min_os_version || '—') + '</code></div>' +
+              '<div class="meta">Min macOS: <code>' + escapeHtml(a.min_os_version || '-') + '</code></div>' +
               '<div class="dl-meta">Size: ' + escapeHtml(fmtBytes(a.size_bytes)) + '</div>' +
               '<div class="dl-meta">File: <code>' + escapeHtml(basename(a.url)) + '</code></div>',
-              '<a href="' + escapeHtml(a.url) + '">Download DMG</a>'
-            ));
+              '<a href="' + escapeHtml(a.url) + '">Download DMG</a>',
+              rec
+            ), rec);
           }
 
-          // Windows
           if (platforms['windows-x64-msi'] && platforms['windows-x64-msi'].url) {
             const a = platforms['windows-x64-msi'];
-            cards.push(card(
+            const rec = currentOs === 'windows';
+            pushCard(card(
               'Windows',
               'x64 MSI',
-              '<div class="meta">Min Windows: <code>' + escapeHtml(a.min_os_version || '—') + '</code></div>' +
+              '<div class="meta">Min Windows: <code>' + escapeHtml(a.min_os_version || '-') + '</code></div>' +
               '<div class="dl-meta">MSI size: ' + escapeHtml(fmtBytes(a.size_bytes)) + '</div>' +
               '<div class="dl-meta">MSI file: <code>' + escapeHtml(basename(a.url)) + '</code></div>',
-              '<a href="' + escapeHtml(a.url) + '">Download MSI</a>'
-            ));
+              '<a href="' + escapeHtml(a.url) + '">Download MSI</a>',
+              rec
+            ), rec);
           }
 
-          // Linux: not in manifest (auto-update excluded), so we point to GitHub assets.
-          cards.push(card(
-            'Linux',
-            'Manual download',
-            '<div class="meta">Linux auto-update is not enabled in the client yet.</div>' +
-            '<div class="dl-meta">Download the latest AppImage from GitHub assets.</div>',
-            '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>'
-          ));
+          {
+            const rec = currentOs === 'linux';
+            pushCard(card(
+              'Linux',
+              'Manual download',
+              '<div class="meta">Linux auto-update is not enabled in the client yet.</div>' +
+              '<div class="dl-meta">Download the latest AppImage from GitHub assets.</div>',
+              '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>',
+              rec
+            ), rec);
+          }
 
           if (cards.length === 0) {
             grid.innerHTML = card(
               'Downloads unavailable',
               '',
               '<div class="meta">Could not find any platform assets in <code>updates/latest.json</code>.</div>',
-              '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>'
+              '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>',
+              false
             );
             return;
           }
 
-          grid.innerHTML = cards.join('');
+          cards.sort((a, b) => Number(b.recommended) - Number(a.recommended));
+          grid.innerHTML = cards.map((c) => c.html).join('');
         })
         .catch(() => {
           grid.innerHTML = card(
             'Downloads unavailable',
             '',
             '<div class="meta">Failed to load <code>updates/latest.json</code>.</div>',
-            '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>'
+            '<a href="https://github.com/xudesheng/codicula/releases/latest">Open GitHub release</a>',
+            false
           );
         });
     })();
   </script>
 </body>
 </html>
-
