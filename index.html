@@ -45,6 +45,10 @@
 
     <div class="grid features">
       <div class="card">
+        <h3>Agent / ACP workflows</h3>
+        <p>Connect coding agents (Claude, Codex) over the Agent Client Protocol — right next to the document you’re editing.</p>
+      </div>
+      <div class="card">
         <h3>WYSIWYG Markdown (GPUI)</h3>
         <p>Render blocks/inline into a real layout, with cursor + selection + undo/redo.</p>
       </div>
@@ -72,9 +76,44 @@
   </section>
 
   <section class="section">
-    <div class="section-title">Screenshots (replace these placeholders)</div>
+    <div class="section-title">Agent / ACP workflows</div>
     <div class="section-desc">
-      Drop images into <code>website/media/screenshots/</code> with the same filenames and refresh.
+      Codicula speaks the <strong>Agent Client Protocol</strong>, so external coding agents live in a panel
+      beside your editor — with the active document as context, not copy-paste.
+    </div>
+
+    <div class="grid features">
+      <div class="card">
+        <h3>ACP agent panel</h3>
+        <p>Discover and connect agents, pick a server, start sessions, send multi-line prompts, and scroll the transcript — all in-app.</p>
+      </div>
+      <div class="card">
+        <h3>Claude &amp; Codex, built in</h3>
+        <p>Managed well-known adapters for Claude and Codex, with safe install/spawn handling across platforms.</p>
+      </div>
+      <div class="card">
+        <h3>Active-document context</h3>
+        <p>The agent sees the document you’re editing; file writes refresh the open tab while preserving your cursor and scroll.</p>
+      </div>
+      <div class="card">
+        <h3>Permission modes that stick</h3>
+        <p>Per-provider permission / approval presets, remembered per agent in <code>agents.toml</code> and re-applied on reconnect.</p>
+      </div>
+      <div class="card">
+        <h3>ACP registry</h3>
+        <p>Browse the public ACP registry from the server picker, then install or remove agents as managed servers.</p>
+      </div>
+      <div class="card">
+        <h3>Custom agents</h3>
+        <p>Bring your own agent via <code>agents.toml</code> with per-agent command, args, env, and defaults.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">Screenshots</div>
+    <div class="section-desc">
+      A look at WYSIWYG editing, large-document handling, and first-class math &amp; diagrams.
     </div>
 
     <div class="screens">
@@ -84,7 +123,6 @@
         </div>
         <h3>Editing</h3>
         <p>WYSIWYG layout, selection, and “feels-native” cursor movement.</p>
-        <div class="caption"><code>media/screenshots/wysiwyg_edit.*</code></div>
       </div>
 
       <div class="card">
@@ -93,7 +131,6 @@
         </div>
         <h3>Big docs</h3>
         <p>Mode routing that keeps interaction predictable instead of pretending everything is editable.</p>
-        <div class="caption"><code>media/screenshots/large_docs.*</code></div>
       </div>
 
       <div class="card">
@@ -102,15 +139,14 @@
         </div>
         <h3>Math + diagrams</h3>
         <p>Display math and Mermaid flowcharts rendered as first-class blocks.</p>
-        <div class="caption"><code>media/screenshots/math_mermaid.*</code></div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-title">Micro-demos (video loops)</div>
+    <div class="section-title">Micro-demos</div>
     <div class="section-desc">
-      Keep them short, silent, and lightweight. Posters live in <code>website/media/posters/</code>, videos in <code>website/media/videos/</code>.
+      Short, silent loops of the editing and export flows in motion.
     </div>
 
     <div class="demos">
@@ -145,6 +181,10 @@
   <section class="downloads">
     <h2>Latest Release</h2>
     <p>CI/CD publishes: Windows MSI, macOS universal DMG (+ app ZIP), Linux AppImage.</p>
+    <p class="subline" style="margin-top:-6px;">
+      Every installer bundles <code>codi-cli</code>, the headless Markdown→PNG/PDF renderer
+      (added to PATH on Windows; in the app bundle / AppImage on macOS &amp; Linux).
+    </p>
     <div class="notice">
       <strong>Note:</strong> Codicula is under very active development (updates are frequent, often on weekends).
       The release page is in testing and descriptions may be imperfect. Please use at your own discretion.
