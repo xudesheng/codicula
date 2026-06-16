@@ -1,6 +1,6 @@
-# Website media (placeholders)
+# Website media
 
-This directory is for **homepage screenshots and short demo loops**.
+This directory holds the **homepage screenshots and short demo loops**.
 
 ## Why this exists
 
@@ -20,24 +20,23 @@ references files from this directory directly.
 
 ## Filenames currently referenced by the site
 
-You can overwrite these with real assets (same filenames) and the site will update:
+Overwrite these with new captures (same filenames) and the site updates automatically.
 
 ### Hero
 
-- `media/screenshots/hero_preview.svg`
+- `media/screenshots/hero_preview.svg` — **placeholder; no real capture yet** (drop in `hero_preview.png` to replace).
 
-### Screenshot section
+### Screenshot section (real captures)
 
-- `media/screenshots/wysiwyg_edit.svg`
-- `media/screenshots/large_docs.svg`
-- `media/screenshots/math_mermaid.svg`
+- `media/screenshots/wysiwyg_edit.png`
+- `media/screenshots/large_docs.png`
+- `media/screenshots/math_mermaid.png`
 
-### Video section
+### Video section (real captures)
 
-- `media/posters/editing_loop.svg`
-- `media/posters/export_loop.svg`
-- `media/videos/editing_loop.webm` (optional, add later)
-- `media/videos/editing_loop.mp4` (optional, add later)
-- `media/videos/export_loop.webm` (optional, add later)
-- `media/videos/export_loop.mp4` (optional, add later)
+- `media/posters/editing_loop.mp4` + `media/posters/editing_loop.poster.png`
+- `media/posters/export_loop.mp4` + `media/posters/export_loop.poster.png`
+
+The `.poster.png` files are the still frames shown before a loop plays (generated from the MP4s
+with `ffmpeg`). The original `*.svg` placeholders remain in place but are no longer referenced.
 
